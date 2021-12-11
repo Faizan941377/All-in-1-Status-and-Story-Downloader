@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "All in 1 Status And Story Downloader"
