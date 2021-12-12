@@ -1,32 +1,41 @@
 package com.nextsuntech.allin1statusandstorydownloader.WhatsApp;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.tabs.TabLayout;
 import com.nextsuntech.allin1statusandstorydownloader.R;
-import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Fragments.ImageFragment;
-import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Fragments.VideoFragment;
-import com.nextsuntech.allin1statusandstorydownloader.databinding.ActivityWhatsAppBinding;
+import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter.ImageAdapterWhatsApp;
+import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter.ViewPagerWhatsApp;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class WhatsAppActivity extends AppCompatActivity {
 
-
+    ViewPager viewPager;
+    MaterialToolbar toolbar;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_whats_app);
+        setSupportActionBar(toolbar);
+
+        toolbar = findViewById(R.id.toolbar);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        viewPager.setAdapter(new ViewPagerWhatsApp(getSupportFragmentManager()));
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

@@ -1,82 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f6f6"
+    tools:context=".WhatsApp.WhatsAppActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f7f6f6"
-        tools:context=".WhatsApp.WhatsAppActivity">
+        android:layout_height="250dp"
+        android:background="@color/colorGreenish">
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RelativeLayout
-                    android:id="@+id/rlFirst"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:background="@color/colorGreenish">
-
-                    <ImageView
-                        android:id="@+id/iv_logo"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerInParent="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/whatsapp_logo" />
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/whatsapp_logo" />
 
 
-                    <TextView
-                        android:id="@+id/tv_text1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/iv_logo"
-                        android:layout_centerInParent="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="WhatsApp"
-                        android:textColor="@color/white"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_logo"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="WhatsApp"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
-                </RelativeLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/rlFirst"
-                    android:orientation="vertical">
-
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="12dp"
-                        android:background="@drawable/tab_rect"
-                        android:elevation="3dp"
-                        app:tabGravity="fill"
-                        app:tabIndicatorHeight="0dp"
-                        app:tabMode="fixed"
-                        app:tabRippleColor="@null"
-                        app:tabSelectedTextColor="@color/colorPrimary"
-                        app:tabTextAppearance="@style/TabLayout"
-                        app:tabTextColor="@color/black" />
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical">
 
 
-                </LinearLayout>
-            </RelativeLayout>
-        </ScrollView>
-    </RelativeLayout>
-</layout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/tab_rect"
+            android:elevation="3dp"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorBackBlue"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@color/colorGray"
+            app:tabSelectedTextColor="@color/colorBackBlue"
+            app:tabTextAppearance="@style/TabLayout"
+            app:tabTextColor="@color/black" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.nextsuntech.allin1statusandstorydownloader"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -37,5 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    //new
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
