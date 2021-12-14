@@ -14,6 +14,7 @@ import com.nextsuntech.allin1statusandstorydownloader.Model.StatusModel;
 import com.nextsuntech.allin1statusandstorydownloader.R;
 import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Fragments.ImageFragment;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ImageAdapterWhatsApp extends RecyclerView.Adapter<ImageAdapterWhatsApp.ImageAdapterWhatsAppVH> {
@@ -46,7 +47,7 @@ public class ImageAdapterWhatsApp extends RecyclerView.Adapter<ImageAdapterWhats
         return imageList.size();
     }
 
-    public class ImageAdapterWhatsAppVH extends RecyclerView.ViewHolder {
+    public class ImageAdapterWhatsAppVH extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageViewIV;
         ImageButton downloadBT;
@@ -55,6 +56,25 @@ public class ImageAdapterWhatsApp extends RecyclerView.Adapter<ImageAdapterWhats
             super(itemView);
             imageViewIV = itemView.findViewById(R.id.iv_thumbnail_rowImage);
             downloadBT = itemView.findViewById(R.id.ib_download_rowImage);
+
+            downloadBT.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.ib_download_rowImage:
+                    StatusModel statusModel = imageList.get(getAdapterPosition());
+                    if (statusModel != null) {
+
+                        try {
+                            imageFragment.downloadImage(statusModel);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+            }
         }
     }
 }

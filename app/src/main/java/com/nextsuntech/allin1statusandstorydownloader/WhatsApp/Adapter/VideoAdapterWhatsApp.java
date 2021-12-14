@@ -1,7 +1,6 @@
 package com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nextsuntech.allin1statusandstorydownloader.Model.StatusModel;
@@ -17,31 +15,30 @@ import com.nextsuntech.allin1statusandstorydownloader.R;
 import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Fragments.VideoFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class VideoAdapterWhatsApp extends RecyclerView.Adapter<VideoAdapterWhatsApp.VideoAdapterWhatsAppVH> {
+public class VideoAdapterWhatsApp extends RecyclerView.Adapter<VideoAdapterWhatsApp.VideoAdapterVH> {
 
-    private final List<StatusModel> videoList;
     Context context;
+    ArrayList<StatusModel> videoList;
     VideoFragment videoFragment;
 
-    public VideoAdapterWhatsApp(List<StatusModel> videoList, Context context, VideoFragment videoFragment) {
-        this.videoList = videoList;
+    public VideoAdapterWhatsApp(Context context, ArrayList<StatusModel> videoList, VideoFragment videoFragment) {
         this.context = context;
+        this.videoList = videoList;
         this.videoFragment = videoFragment;
     }
 
     @NonNull
     @Override
-    public VideoAdapterWhatsApp.VideoAdapterWhatsAppVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_video, parent, false);
-        return new VideoAdapterWhatsAppVH(view);
+    public VideoAdapterWhatsApp.VideoAdapterVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.row_video,parent,false);
+        return new VideoAdapterVH(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VideoAdapterWhatsApp.VideoAdapterWhatsAppVH holder, int position) {
+    public void onBindViewHolder(@NonNull VideoAdapterWhatsApp.VideoAdapterVH holder, int position) {
         StatusModel statusModel = videoList.get(position);
-        holder.imageViewIV.setImageBitmap(statusModel.getThumbnail());
+        holder.imageVideo.setImageBitmap(statusModel.getThumbnail());
     }
 
     @Override
@@ -49,15 +46,16 @@ public class VideoAdapterWhatsApp extends RecyclerView.Adapter<VideoAdapterWhats
         return videoList.size();
     }
 
-    public class VideoAdapterWhatsAppVH extends RecyclerView.ViewHolder {
+    public class VideoAdapterVH extends RecyclerView.ViewHolder {
 
-        ImageView imageViewIV;
-        ImageView downloadBT;
+        ImageView imageVideo;
+        ImageButton videoDownloadBT;
 
-        public VideoAdapterWhatsAppVH(@NonNull View itemView) {
+        public VideoAdapterVH(@NonNull View itemView) {
             super(itemView);
-            imageViewIV = itemView.findViewById(R.id.iv_thumbnail_rowImage);
-            downloadBT = itemView.findViewById(R.id.ib_download_rowImage);
+
+            imageVideo = itemView.findViewById(R.id.iv_thumbnail_rowVideo);
+            videoDownloadBT = itemView.findViewById(R.id.ib_download_rowVideo);
         }
     }
 }

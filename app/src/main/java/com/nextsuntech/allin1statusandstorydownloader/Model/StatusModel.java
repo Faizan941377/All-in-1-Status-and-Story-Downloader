@@ -15,11 +15,8 @@ public class StatusModel {
         this.file = file;
         this.title = title;
         this.path = path;
+        this.isVideo = file.getName().endsWith(MP4);
 
-    }
-
-    public static String getMP4() {
-        return MP4;
     }
 
     public File getFile() {
