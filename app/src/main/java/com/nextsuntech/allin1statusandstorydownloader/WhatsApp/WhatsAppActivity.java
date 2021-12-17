@@ -88,58 +88,6 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void setRefreshLayout() {
-        filesLists.clear();
-        whatsAppRV.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
-        whatsAppRV.setLayoutManager(gridLayoutManager);
-        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getData());
-        whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
-        whatsAppRecyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    private ArrayList<Object> getData() {
-        ModelClass f;
-        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAMES;
-        File targetDirectory = new File(targetPath);
-
-        files = targetDirectory.listFiles();
-
-        for (int i = 0; i < files.length; i++) {
-            File file = files[i];
-            f = new ModelClass();
-            f.setUri(Uri.fromFile(file));
-            f.setPath(files[i].getAbsolutePath());
-            f.setFileName(file.getName());
-
-            if (!f.getUri().toString().endsWith(".endmedia")) {
-                filesLists.add(f);
-            }
-        }
-        return filesLists;
-    }
-
-    /*private ArrayList<Object> getsData() {
-        ModelClass f;
-        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
-        File targetDirectory = new File(targetPath);
-
-        files = targetDirectory.listFiles();
-
-        for (int i = 0; i < files.length; i++) {
-            File file = files[i];
-            f = new ModelClass();
-            f.setUri(Uri.fromFile(file));
-            f.setPath(files[i].getAbsolutePath());
-            f.setFileName(file.getName());
-
-            if (!f.getUri().toString().endsWith(".endmedia")) {
-                filesLists.add(f);
-            }
-        }
-        return filesLists;
-    }*/
-
     private void showPermissionDialog() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
 
@@ -198,11 +146,62 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
                 if (Environment.isExternalStorageManager()) {
 
                 } else {
-
                 }
             }
         }
     }
+
+    private void setRefreshLayout() {
+        filesLists.clear();
+        whatsAppRV.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        whatsAppRV.setLayoutManager(gridLayoutManager);
+        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getData());
+        whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
+        whatsAppRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<Object> getData() {
+        ModelClass f;
+        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAMES;
+        File targetDirectory = new File(targetPath);
+
+        files = targetDirectory.listFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            f = new ModelClass();
+            f.setUri(Uri.fromFile(file));
+            f.setPath(files[i].getAbsolutePath());
+            f.setFileName(file.getName());
+
+            if (!f.getUri().toString().endsWith(".endmedia")) {
+                filesLists.add(f);
+            }
+        }
+        return filesLists;
+    }
+
+    /*private ArrayList<Object> getsData() {
+        ModelClass f;
+        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
+        File targetDirectory = new File(targetPath);
+
+        files = targetDirectory.listFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            f = new ModelClass();
+            f.setUri(Uri.fromFile(file));
+            f.setPath(files[i].getAbsolutePath());
+            f.setFileName(file.getName());
+
+            if (!f.getUri().toString().endsWith(".endmedia")) {
+                filesLists.add(f);
+            }
+        }
+        return filesLists;
+    }*/
 
     @Override
     public void onClick(View v) {
