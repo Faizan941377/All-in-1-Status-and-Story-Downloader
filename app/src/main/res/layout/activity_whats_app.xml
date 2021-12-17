@@ -4,70 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f6f6"
     tools:context=".WhatsApp.WhatsAppActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
+        android:id="@+id/rel_whatsApp_first"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@color/colorGreenish">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorGreen">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WhatsApp"
+            android:layout_centerInParent="true"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
 
-            <ImageView
-                android:id="@+id/iv_logo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/whatsapp_logo" />
+        <ImageView
+            android:id="@+id/iv_WhatsAppActivity_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            android:padding="5dp"/>
 
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_logo"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="WhatsApp"
-                android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sp_swipere"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:orientation="vertical">
+        android:layout_below="@+id/rel_whatsApp_first">
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_whatsApp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="@drawable/tab_rect"
-            android:elevation="3dp"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/colorBackBlue"
-            app:tabIndicatorHeight="2dp"
-            app:tabMode="fixed"
-            app:tabRippleColor="@color/colorGray"
-            app:tabSelectedTextColor="@color/colorBackBlue"
-            app:tabTextAppearance="@style/TabLayout"
-            app:tabTextColor="@color/black" />
+            android:layout_height="wrap_content"/>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>
