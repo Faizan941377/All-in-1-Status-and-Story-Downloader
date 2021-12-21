@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,21 +21,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nextsuntech.allin1statusandstorydownloader.Constant.Constant;
-import com.nextsuntech.allin1statusandstorydownloader.Model.ModelClass;
+import com.nextsuntech.allin1statusandstorydownloader.Model.WhatsAppModelClass;
 import com.nextsuntech.allin1statusandstorydownloader.R;
 import com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter.WhatsAppRecyclerViewAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.internal.Version;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -61,7 +51,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         initViews();
         showPermissionDialog();
         checkPermission();
-        setRefreshLayout();
+        version10();
     }
 
     private void initViews() {
@@ -75,7 +65,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         swipeRefreshWhatApp.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                setRefreshLayout();
+                version10();
                 (
                         new Handler()).postDelayed(new Runnable() {
                     @Override
@@ -151,6 +141,14 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void version10(){
+        if (SDK_INT <= Build.VERSION_CODES.R){
+            setRefreshLayout();
+        }else {
+            setRefreshLayouts();
+        }
+    }
+
     private void setRefreshLayout() {
         filesLists.clear();
         whatsAppRV.setHasFixedSize(true);
@@ -162,7 +160,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private ArrayList<Object> getData() {
-        ModelClass f;
+        WhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAMES;
         File targetDirectory = new File(targetPath);
 
@@ -170,7 +168,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
 
         for (int i = 0; i < files.length; i++) {
             File file = files[i];
-            f = new ModelClass();
+            f = new WhatsAppModelClass();
             f.setUri(Uri.fromFile(file));
             f.setPath(files[i].getAbsolutePath());
             f.setFileName(file.getName());
@@ -182,8 +180,18 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         return filesLists;
     }
 
-    /*private ArrayList<Object> getsData() {
-        ModelClass f;
+    private void setRefreshLayouts() {
+        filesLists.clear();
+        whatsAppRV.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        whatsAppRV.setLayoutManager(gridLayoutManager);
+        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getsData());
+        whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
+        whatsAppRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<Object> getsData() {
+        WhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
         File targetDirectory = new File(targetPath);
 
@@ -191,7 +199,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
 
         for (int i = 0; i < files.length; i++) {
             File file = files[i];
-            f = new ModelClass();
+            f = new WhatsAppModelClass();
             f.setUri(Uri.fromFile(file));
             f.setPath(files[i].getAbsolutePath());
             f.setFileName(file.getName());
@@ -201,7 +209,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
             }
         }
         return filesLists;
-    }*/
+    }
 
     @Override
     public void onClick(View v) {

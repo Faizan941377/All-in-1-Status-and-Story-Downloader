@@ -2,17 +2,17 @@ package com.nextsuntech.allin1statusandstorydownloader.Model;
 
 import android.net.Uri;
 
-public class ModelClass {
+public class WhatsAppModelClass {
 
     private String name;
     private String path;
     private String fileName;
     private Uri uri;
 
-    public ModelClass() {
+    public WhatsAppModelClass() {
     }
 
-    public ModelClass(String name, String path, String fileName, Uri uri) {
+    public WhatsAppModelClass(String name, String path, String fileName, Uri uri) {
         this.name = name;
         this.path = path;
         this.fileName = fileName;

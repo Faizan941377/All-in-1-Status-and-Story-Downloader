@@ -13,12 +13,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.DisplayCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.nextsuntech.allin1statusandstorydownloader.Constant.Constant;
-import com.nextsuntech.allin1statusandstorydownloader.Model.ModelClass;
+import com.nextsuntech.allin1statusandstorydownloader.Model.WhatsAppModelClass;
 import com.nextsuntech.allin1statusandstorydownloader.R;
 
 import org.apache.commons.io.FileUtils;
@@ -46,7 +45,7 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
 
     @Override
     public void onBindViewHolder(@NonNull WhatsAppRecyclerViewAdapter.ViewHolder holder, int position) {
-        final ModelClass files = (ModelClass) filesList.get(position);
+        final WhatsAppModelClass files = (WhatsAppModelClass) filesList.get(position);
         if (files.getUri().toString().endsWith(".mp4")) {
             holder.playBT.setVisibility(View.VISIBLE);
         } else {
@@ -61,7 +60,7 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
             public void onClick(View v) {
                 CheckFolder();
 
-                final String path = ((ModelClass) filesList.get(position)).getPath();
+                final String path = ((WhatsAppModelClass) filesList.get(position)).getPath();
                 final File file = new File(path);
 
                 String destPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.SAVE_FOLDER_NAME;
@@ -107,7 +106,7 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
         boolean isDirectoryCreated = dir.exists();
 
         if (!isDirectoryCreated) {
-            isDirectoryCreated = dir.mkdir();
+            isDirectoryCreated = dir.mkdirs();
         }
 
         if (isDirectoryCreated) {

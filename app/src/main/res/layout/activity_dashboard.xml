@@ -26,7 +26,7 @@
                     android:layout_height="100dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="40dp"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/status" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="36dp"
-                    android:text="All in 1 Status Downloader"
+                    android:text="Two in 1 Status Downloader"
                     android:textColor="@color/white"
                     android:textSize="22dp"
                     android:textStyle="bold" />
@@ -111,6 +111,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rl_facebook_button"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="5dp"
@@ -172,6 +174,69 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_instagram_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rectangle"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:id="@+id/iv_instagramLogo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/insta_logo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:layout_toLeftOf="@+id/iv_instagramArrow"
+                        android:layout_toRightOf="@+id/iv_instagramLogo"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="Instagram"
+                            android:textColor="@color/colorGreenish"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="Download Instagram Video"
+                            android:textColor="@color/colorGreenish"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_instagramArrow"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/ic_arrow" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="5dp"
