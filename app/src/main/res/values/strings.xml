@@ -2,4 +2,6 @@
     <string name="app_name">Two in 1 Status Downloader</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Native_Ad_ID">ca-app-pub-3940256099942544/1044960115</string>
 </resources>

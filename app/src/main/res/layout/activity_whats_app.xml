@@ -34,6 +34,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/sp_swipere"
         android:layout_width="match_parent"
+        android:layout_above="@+id/adView"
         android:layout_height="match_parent"
         android:layout_below="@+id/rel_whatsApp_first">
 
@@ -43,4 +44,16 @@
             android:layout_height="wrap_content"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
 </RelativeLayout>

@@ -10,16 +10,16 @@ android {
         applicationId "com.nextsuntech.allin1statusandstorydownloader"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            /*minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'*/
         }
     }
     compileOptions {
@@ -61,4 +61,7 @@ dependencies {
     // images library
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    //Admobe
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'
 }
