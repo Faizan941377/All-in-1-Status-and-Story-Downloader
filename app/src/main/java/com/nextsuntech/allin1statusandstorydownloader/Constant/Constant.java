@@ -9,7 +9,11 @@ import android.widget.Toast;
 public class Constant {
     public static final String FOLDER_NAME = "/WhatsApp/Media/.Statuses";
     public static final String FOLDER_NAMES = "/Android/media/com.whatsapp/WhatsApp/Media/.Statuses";
+    public static final String BUSINESS_WHATSAPP = "/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/.Statuses";
+    public static final String GB_WHATSAPP = "/Android/media/com.gbwhatsapp/GBWhatsApp/Media/.Statuses";
     public static final String SAVE_FOLDER_NAME = "/All in 1 Status/WhatsApp/";
+    public static final String SAVE_FOLDER_NAME1 = "/All in 1 Status/WABusiness/";
+    public static final String SAVE_FOLDER_NAME2 = "/All in 1 Status/GBWhatsApp/";
     public static final String SAVE_FACEBOOK_VIDEO = "/All in 1 Status/Facebook/";
 
     public static void downloadFacebookVideo(String downloadPath, String destinationPath, Context context, String fileName) {

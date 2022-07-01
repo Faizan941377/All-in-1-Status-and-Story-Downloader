@@ -57,8 +57,6 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_whats_app);
 
         initViews();
-        showPermissionDialog();
-        checkPermission();
         version10();
         BannerAdsDashboard();
     }
@@ -87,73 +85,10 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void showPermissionDialog() {
-        if (SDK_INT >= Build.VERSION_CODES.R) {
-
-            try {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                intent.addCategory("android.intent.category.DEFAULT");
-                intent.setData(Uri.parse(String.format("package:%s", new Object[]{getApplicationContext().getPackageName()})));
-                startActivityForResult(intent, 2000);
-            } catch (Exception e) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                startActivityForResult(intent, 2000);
-
-            }
-
-        } else
-            ActivityCompat.requestPermissions(this,
-                    new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 333);
-    }
-
-    private boolean checkPermission() {
-        if (SDK_INT >= Build.VERSION_CODES.R) {
-            return Environment.isExternalStorageManager();
-        } else {
-            int write = ContextCompat.checkSelfPermission(getApplicationContext(),
-                    WRITE_EXTERNAL_STORAGE);
-            int read = ContextCompat.checkSelfPermission(getApplicationContext(),
-                    READ_EXTERNAL_STORAGE);
-
-            return write == PackageManager.PERMISSION_GRANTED &&
-                    read == PackageManager.PERMISSION_GRANTED;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull @org.jetbrains.annotations.NotNull String[] permissions, @NonNull @org.jetbrains.annotations.NotNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 333) {
-            if (grantResults.length > 0) {
-                boolean write = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean read = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-
-                if (read && write) {
-
-                } else {
-
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2000) {
-            if (SDK_INT >= Build.VERSION_CODES.R) {
-                if (Environment.isExternalStorageManager()) {
-
-                } else {
-                }
-            }
-        }
-    }
-
-    private void version10(){
-        if (SDK_INT <= Build.VERSION_CODES.R){
+    private void version10() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setRefreshLayout();
-        }else {
+        } else{
             setRefreshLayouts();
         }
     }
@@ -194,12 +129,12 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         whatsAppRV.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         whatsAppRV.setLayoutManager(gridLayoutManager);
-        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getsData());
+        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getsData1());
         whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
         whatsAppRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<Object> getsData() {
+    private ArrayList<Object> getsData1() {
         WhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
         File targetDirectory = new File(targetPath);
@@ -222,7 +157,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.iv_WhatsAppActivity_back:
                 finish();

@@ -1,5 +1,6 @@
 package com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -44,7 +45,7 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WhatsAppRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WhatsAppRecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final WhatsAppModelClass files = (WhatsAppModelClass) filesList.get(position);
         if (files.getUri().toString().endsWith(".mp4")) {
             holder.playBT.setVisibility(View.VISIBLE);
