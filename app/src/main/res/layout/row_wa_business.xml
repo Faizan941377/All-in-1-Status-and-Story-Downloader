@@ -25,7 +25,9 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:background="@drawable/ico_playbutton" />
+            android:padding="100dp"
+            android:background="@drawable/ico_playbutton"
+            android:backgroundTint="@color/colorGreen"/>
 
     </androidx.cardview.widget.CardView>
 

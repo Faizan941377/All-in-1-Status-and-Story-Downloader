@@ -14,9 +14,9 @@ public class Constant {
     public static final String SAVE_FOLDER_NAME = "/All in 1 Status/WhatsApp/";
     public static final String SAVE_FOLDER_NAME1 = "/All in 1 Status/WABusiness/";
     public static final String SAVE_FOLDER_NAME2 = "/All in 1 Status/GBWhatsApp/";
-    public static final String SAVE_FACEBOOK_VIDEO = "/All in 1 Status/Facebook/";
+    public static final String DIRECTORY_INSTAGRAM = "/All in 1 Status/Instagram/";
 
-    public static void downloadFacebookVideo(String downloadPath, String destinationPath, Context context, String fileName) {
+    public static void download(String downloadPath, String destinationPath, Context context, String fileName) {
         Toast.makeText(context, "Downloading Started", Toast.LENGTH_SHORT).show();
         Uri uri = Uri.parse(downloadPath);
         DownloadManager.Request request = new DownloadManager.Request(uri);

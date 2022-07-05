@@ -98,7 +98,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         whatsAppRV.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         whatsAppRV.setLayoutManager(gridLayoutManager);
-        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getData());
+        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getData(),WhatsAppActivity.this);
         whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
         whatsAppRecyclerViewAdapter.notifyDataSetChanged();
     }
@@ -129,7 +129,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
         whatsAppRV.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         whatsAppRV.setLayoutManager(gridLayoutManager);
-        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getsData1());
+        whatsAppRecyclerViewAdapter = new WhatsAppRecyclerViewAdapter(WhatsAppActivity.this, getsData1(),WhatsAppActivity.this);
         whatsAppRV.setAdapter(whatsAppRecyclerViewAdapter);
         whatsAppRecyclerViewAdapter.notifyDataSetChanged();
     }

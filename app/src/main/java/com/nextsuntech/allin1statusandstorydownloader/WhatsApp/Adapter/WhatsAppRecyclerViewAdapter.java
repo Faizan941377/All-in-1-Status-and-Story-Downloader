@@ -1,7 +1,9 @@
 package com.nextsuntech.allin1statusandstorydownloader.WhatsApp.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -20,6 +22,8 @@ import com.bumptech.glide.Glide;
 import com.nextsuntech.allin1statusandstorydownloader.Constant.Constant;
 import com.nextsuntech.allin1statusandstorydownloader.Model.WhatsAppModelClass;
 import com.nextsuntech.allin1statusandstorydownloader.R;
+import com.nextsuntech.allin1statusandstorydownloader.VideoPlayer.ImageViewActivity;
+import com.nextsuntech.allin1statusandstorydownloader.VideoPlayer.VideoPlayerActivity;
 
 import org.apache.commons.io.FileUtils;
 
@@ -31,10 +35,13 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
 
     private Context mContext;
     private ArrayList<Object> filesList;
+    private Activity activity;
 
-    public WhatsAppRecyclerViewAdapter(Context mContext, ArrayList<Object> filesList) {
+
+    public WhatsAppRecyclerViewAdapter(Context mContext, ArrayList<Object> filesList, Activity activity) {
         this.mContext = mContext;
         this.filesList = filesList;
+        this.activity = activity;
     }
 
     @NonNull
@@ -49,7 +56,9 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
         final WhatsAppModelClass files = (WhatsAppModelClass) filesList.get(position);
         if (files.getUri().toString().endsWith(".mp4")) {
             holder.playBT.setVisibility(View.VISIBLE);
+            holder.imageThumbnail.setEnabled(false);
         } else {
+            holder.imageThumbnail.setEnabled(true);
             holder.playBT.setVisibility(View.INVISIBLE);
         }
 
@@ -92,6 +101,26 @@ public class WhatsAppRecyclerViewAdapter extends RecyclerView.Adapter<WhatsAppRe
                 Toast.makeText(mContext, "Saved to:" + destPath + files.getFileName(), Toast.LENGTH_SHORT).show();
             }
 
+        });
+
+        holder.playBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Playing...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, VideoPlayerActivity.class);
+                intent.putExtra("video",((WhatsAppModelClass) filesList.get(position)).getPath());
+                activity.startActivity(intent);
+            }
+        });
+
+        holder.imageThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Opening...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ImageViewActivity.class);
+                intent.putExtra("Image",((WhatsAppModelClass) filesList.get(position)).getPath());
+                activity.startActivity(intent);
+            }
         });
     }
 

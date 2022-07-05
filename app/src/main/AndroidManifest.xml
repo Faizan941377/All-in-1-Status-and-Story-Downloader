@@ -19,9 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AllIn1StatusAndStoryDownloader">
         <activity
-            android:name=".BusinessWhatsApp.BusinessWhatsAppActivity"
+            android:name=".VideoPlayer.ImageViewActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".VideoPlayer.VideoPlayerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".BusinessWhatsApp.BusinessWhatsAppActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".GBWhatsApp.GBWhatsAppActivity"
             android:exported="false"

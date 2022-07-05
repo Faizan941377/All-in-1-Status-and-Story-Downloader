@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoPlayer.ImageViewActivity">
+
+    <RelativeLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorGreen">
+
+        <ImageView
+            android:id="@+id/iv_imageView_back"
+            android:layout_width="45sp"
+            android:layout_height="45sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8sp"
+            android:background="@drawable/ic_back"
+            android:backgroundTint="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tv_imageView_imagePath"
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_imageView_back"
+            android:gravity="center_vertical"
+            android:text="hello"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_below="@id/action_bar"
+        android:id="@+id/iv_imageView_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

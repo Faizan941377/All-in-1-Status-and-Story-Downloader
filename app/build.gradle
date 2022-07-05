@@ -50,8 +50,12 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
 
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+
+    //volley
+    implementation 'com.android.volley:volley:1.2.1'
+
 
     implementation 'com.github.Abhay-cloud:Instagram-Video-Downloader-Library:0.2.2'
 

@@ -180,7 +180,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/bottom_sheet_button_shape"
-            android:elevation="3dp">
+            android:elevation="3dp"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_instagramLogo"

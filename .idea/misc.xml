@@ -4,13 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/drawable/bottom_sheet_button_shape.xml" value="0.127" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/drawable/ic_back.xml" value="0.127" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/drawable/rectangle.xml" value="0.127" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/drawable/tab_indicator.xml" value="0.132" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout-v21/row_image.xml" value="0.20416666666666666" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_business_whats_app.xml" value="0.19010416666666666" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_dashboard.xml" value="0.1925925925925926" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_gbwhats_app.xml" value="0.19010416666666666" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_image_view.xml" value="0.19010416666666666" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_instagram.xml" value="0.1925925925925926" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_video_player.xml" value="0.20416666666666666" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/activity_whats_app.xml" value="0.1925925925925926" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/fragment_reel.xml" value="0.20416666666666666" />
+        <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/fragment_t_v.xml" value="0.20416666666666666" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/row_gb_whatsapp.xml" value="0.20416666666666666" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/row_image.xml" value="0.1925925925925926" />
         <entry key="..\:/Self Projects/All in One Status And Story Downloader/Code/app/src/main/res/layout/row_wa_business.xml" value="0.20416666666666666" />

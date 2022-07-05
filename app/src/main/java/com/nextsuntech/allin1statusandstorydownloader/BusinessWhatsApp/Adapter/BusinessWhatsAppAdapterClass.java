@@ -1,7 +1,9 @@
 package com.nextsuntech.allin1statusandstorydownloader.BusinessWhatsApp.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -22,6 +24,8 @@ import com.nextsuntech.allin1statusandstorydownloader.GBWhatsApp.Adapter.GBWhats
 import com.nextsuntech.allin1statusandstorydownloader.Model.BusinessWhatsAppModelClass;
 import com.nextsuntech.allin1statusandstorydownloader.Model.WhatsAppModelClass;
 import com.nextsuntech.allin1statusandstorydownloader.R;
+import com.nextsuntech.allin1statusandstorydownloader.VideoPlayer.ImageViewActivity;
+import com.nextsuntech.allin1statusandstorydownloader.VideoPlayer.VideoPlayerActivity;
 
 import org.apache.commons.io.FileUtils;
 
@@ -34,10 +38,12 @@ public class BusinessWhatsAppAdapterClass extends RecyclerView.Adapter<BusinessW
 
     Context mContext;
     ArrayList<Object> filesList;
+    private Activity activity;
 
-    public BusinessWhatsAppAdapterClass(Context mContext, ArrayList<Object> filesList) {
+    public BusinessWhatsAppAdapterClass(Context mContext, ArrayList<Object> filesList, Activity activity) {
         this.mContext = mContext;
         this.filesList = filesList;
+        this.activity = activity;
     }
 
     @NonNull
@@ -48,12 +54,14 @@ public class BusinessWhatsAppAdapterClass extends RecyclerView.Adapter<BusinessW
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BusinessWhatsAppAdapterClass.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BusinessWhatsAppAdapterClass.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final BusinessWhatsAppModelClass files = (BusinessWhatsAppModelClass) filesList.get(position);
         if (files.getUri().toString().endsWith(".mp4")) {
             holder.playBT.setVisibility(View.VISIBLE);
+            holder.imageThumbnail.setEnabled(false);
         } else {
             holder.playBT.setVisibility(View.INVISIBLE);
+            holder.imageThumbnail.setEnabled(true);
         }
         CheckFolder();
         Glide.with(mContext).load(files.getUri()).into(holder.imageThumbnail);
@@ -63,7 +71,7 @@ public class BusinessWhatsAppAdapterClass extends RecyclerView.Adapter<BusinessW
             public void onClick(View v) {
                 CheckFolder();
 
-                final String path = ((WhatsAppModelClass) filesList.get(position)).getPath();
+                final String path = ((BusinessWhatsAppModelClass) filesList.get(position)).getPath();
                 final File file = new File(path);
 
                 String destPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.SAVE_FOLDER_NAME1;
@@ -95,6 +103,26 @@ public class BusinessWhatsAppAdapterClass extends RecyclerView.Adapter<BusinessW
             }
 
         });
+
+        holder.playBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Playing...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, VideoPlayerActivity.class);
+                intent.putExtra("video",((BusinessWhatsAppModelClass) filesList.get(position)).getPath());
+                activity.startActivity(intent);
+            }
+        });
+
+        holder.imageThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Opening...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ImageViewActivity.class);
+                intent.putExtra("Image",((BusinessWhatsAppModelClass) filesList.get(position)).getPath());
+                activity.startActivity(intent);
+            }
+        });
     }
 
     private void CheckFolder() {
@@ -121,6 +149,7 @@ public class BusinessWhatsAppAdapterClass extends RecyclerView.Adapter<BusinessW
 
         ImageView imageThumbnail;
         ImageView playBT;
+        ImageView imageIV;
         Button downloadBT;
 
         public ViewHolder(@NonNull View itemView) {

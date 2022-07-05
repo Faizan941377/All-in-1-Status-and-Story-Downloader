@@ -66,9 +66,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         instagramBT.setOnClickListener(this);
         facebookBT.setOnClickListener(this);
 
-        if (checkPermission()){
+        if (checkPermission()) {
             Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(this, "Permission was not granted", Toast.LENGTH_SHORT).show();
             requestPermission();
         }
@@ -106,9 +106,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         bottomSheetView.findViewById(R.id.bt_bottom_whatsApp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WhatsAppActivity.class);
-                startActivity(intent);
-                bottomSheetDialog.dismiss();
+                try {
+                    Intent intent = new Intent(getApplicationContext(), WhatsAppActivity.class);
+                    startActivity(intent);
+                    bottomSheetDialog.dismiss();
+                }catch (Exception e){
+                    Toast.makeText(DashboardActivity.this, "Please download WhatsApp", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -135,9 +140,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         bottomSheetDialog.findViewById(R.id.bt_bottom_business).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BusinessWhatsAppActivity.class);
-                startActivity(intent);
-                bottomSheetDialog.dismiss();
+                try {
+                    Intent intent = new Intent(getApplicationContext(), BusinessWhatsAppActivity.class);
+                    startActivity(intent);
+                    bottomSheetDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -181,7 +190,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                             //Manage External Storage is Denied
                             Toast.makeText(DashboardActivity.this, "Permission is Denied", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
+                    } else {
                         //Android is Below 11(R)
                     }
                 }
@@ -203,20 +212,20 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == STORAGE_PERMISSION_CODE){
-            if (grantResults.length>0){
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0) {
                 //check each permission if granted or not
-                boolean write  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean write = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 boolean read = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
-                if (write && read){
+                if (write && read) {
                     // External storage permission is granted
 
 
                     // here we call the find the directory
 
 
-                }else {
+                } else {
                     // External storage permission is denied
                     Toast.makeText(this, "External Storage Permission is Denied", Toast.LENGTH_SHORT).show();
                 }

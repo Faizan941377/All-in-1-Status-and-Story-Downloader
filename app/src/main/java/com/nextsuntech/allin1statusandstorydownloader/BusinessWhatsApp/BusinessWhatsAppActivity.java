@@ -89,8 +89,7 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
         businessWhatsAppRV.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         businessWhatsAppRV.setLayoutManager(gridLayoutManager);
-        businessWhatsAppRV.setAdapter(new BusinessWhatsAppAdapterClass(getApplicationContext(),getData1()));
-        businessWhatsAppAdapterClass = new BusinessWhatsAppAdapterClass(BusinessWhatsAppActivity.this,getData1());
+        businessWhatsAppAdapterClass = new BusinessWhatsAppAdapterClass(BusinessWhatsAppActivity.this,getData1(),BusinessWhatsAppActivity.this);
         businessWhatsAppAdapterClass.notifyDataSetChanged();
     }
 
@@ -120,7 +119,7 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
         businessWhatsAppRV.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
         businessWhatsAppRV.setLayoutManager(gridLayoutManager);
-        businessWhatsAppAdapterClass = new BusinessWhatsAppAdapterClass(BusinessWhatsAppActivity.this, getData());
+        businessWhatsAppAdapterClass = new BusinessWhatsAppAdapterClass(BusinessWhatsAppActivity.this, getData(),BusinessWhatsAppActivity.this);
         businessWhatsAppRV.setAdapter(businessWhatsAppAdapterClass);
         businessWhatsAppAdapterClass.notifyDataSetChanged();
     }
