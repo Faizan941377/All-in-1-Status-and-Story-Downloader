@@ -94,6 +94,7 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
     }
 
     private ArrayList<Object> getData1() {
+        try {
         BusinessWhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.BUSINESS_WHATSAPP;
         File targetDirectory = new File(targetPath);
@@ -111,6 +112,10 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
                 filesLists.add(f);
             }
         }
+    }catch (Exception e){
+        e.printStackTrace();
+        Toast.makeText(this, "Please download WhatsApp Business first", Toast.LENGTH_SHORT).show();
+    }
         return filesLists;
     }
 
@@ -125,6 +130,7 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
     }
 
     private ArrayList<Object> getData() {
+        try {
         BusinessWhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.BUSINESS_WHATSAPP;
         File targetDirectory = new File(targetPath);
@@ -142,6 +148,10 @@ public class BusinessWhatsAppActivity extends AppCompatActivity implements View.
                 filesLists.add(f);
             }
         }
+    }catch (Exception e){
+        e.printStackTrace();
+        Toast.makeText(this, "Please download WhatsApp Business first", Toast.LENGTH_SHORT).show();
+    }
         return filesLists;
     }
 

@@ -60,7 +60,6 @@ public class ReelFragment extends Fragment implements View.OnClickListener {
     String url;
     String reeUrl = "1";
     Uri uri2;
-    MediaController mediaController;
     FrameLayout frameLayout;
 
 
@@ -77,6 +76,7 @@ public class ReelFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reel, container, false);
+        // initialized the id's
         downloadBT = view.findViewById(R.id.cv_instagram_Download);
         pastLinkET = view.findViewById(R.id.et_instagram_link);
         backBT = view.findViewById(R.id.ic_instagram_back);
@@ -124,39 +124,48 @@ public class ReelFragment extends Fragment implements View.OnClickListener {
     }
 
     private void processData() {
+        try {
+            url = pastLinkET.getText().toString().trim();
+            if (pastLinkET.equals("NULL")) {
+                Toast.makeText(getContext(), "Please enter url", Toast.LENGTH_SHORT).show();
+            } else {
+                String result2 = StringUtils.substringBefore(url, "/?");
+                url = result2 + "/?__a=1";
 
-        url = pastLinkET.getText().toString().trim();
-        if (pastLinkET.equals("NULL")) {
-            Toast.makeText(getContext(), "Please enter url", Toast.LENGTH_SHORT).show();
-        } else {
-            String result2 = StringUtils.substringBefore(url, "/?");
-            url = result2 + "/?__a=1";
 
+                StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                        GsonBuilder gsonBuilder = new GsonBuilder();
+                        Gson gson = gsonBuilder.create();
+                        MainUrl mainUrl = gson.fromJson(response, MainUrl.class);
+                        reeUrl = mainUrl.getGraphql().getShortcode_media().getVideo_url();
+                        uri2 = Uri.parse(reeUrl);
+                        MediaController mediaController = new MediaController(getActivity());
+                        reelVV.setMediaController(mediaController);
+                        mediaController.setAnchorView(reelVV);
+                        reelVV.setVideoURI(uri2);
+                        reelVV.requestFocus();
+                        reelVV.start();
+                    }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "Please try again later system is busy", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "not able to fetch", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-            StringRequest request = new StringRequest(url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    GsonBuilder gsonBuilder = new GsonBuilder();
-                    Gson gson = gsonBuilder.create();
-                    MainUrl mainUrl = gson.fromJson(response, MainUrl.class);
-                    reeUrl = mainUrl.getGraphql().getShortcode_media().getVideo_url();
-                    uri2 = Uri.parse(reeUrl);
-                    MediaController mediaController = new MediaController(getActivity());
-                    reelVV.setMediaController(mediaController);
-                    mediaController.setAnchorView(reelVV);
-                    reelVV.setVideoURI(uri2);
-                    reelVV.requestFocus();
-                    reelVV.start();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(), "not able to fetch", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-            requestQueue.add(request);
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                requestQueue.add(request);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

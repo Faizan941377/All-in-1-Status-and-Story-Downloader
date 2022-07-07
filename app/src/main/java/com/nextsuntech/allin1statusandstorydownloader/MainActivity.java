@@ -12,7 +12,7 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nextsuntech.allin1statusandstorydownloader.Instagram.Fragments.ReelFragment;
-import com.nextsuntech.allin1statusandstorydownloader.Instagram.Fragments.TVFragment;
+import com.nextsuntech.allin1statusandstorydownloader.Instagram.Fragments.IGTVFragment;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         instagramAdapter = new InstagramAdapter(getSupportFragmentManager());
         //here adding the fragments
         instagramAdapter.AddFragment(new ReelFragment(),"Reel");
-        instagramAdapter.AddFragment(new TVFragment(),"TV");
+        instagramAdapter.AddFragment(new IGTVFragment(),"TV");
 
         viewPager.setAdapter(instagramAdapter);
         tabLayout.setupWithViewPager(viewPager);

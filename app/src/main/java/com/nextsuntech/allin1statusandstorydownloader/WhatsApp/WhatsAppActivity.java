@@ -104,6 +104,7 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private ArrayList<Object> getData() {
+        try {
         WhatsAppModelClass f;
         String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAMES;
         File targetDirectory = new File(targetPath);
@@ -121,6 +122,10 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
                 filesLists.add(f);
             }
         }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, "Please download whatsApp first", Toast.LENGTH_SHORT).show();
+        }
         return filesLists;
     }
 
@@ -135,22 +140,27 @@ public class WhatsAppActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private ArrayList<Object> getsData1() {
-        WhatsAppModelClass f;
-        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
-        File targetDirectory = new File(targetPath);
+        try {
+            WhatsAppModelClass f;
+            String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FOLDER_NAME;
+            File targetDirectory = new File(targetPath);
 
-        files = targetDirectory.listFiles();
+            files = targetDirectory.listFiles();
 
-        for (int i = 0; i < files.length; i++) {
-            File file = files[i];
-            f = new WhatsAppModelClass();
-            f.setUri(Uri.fromFile(file));
-            f.setPath(files[i].getAbsolutePath());
-            f.setFileName(file.getName());
+            for (int i = 0; i < files.length; i++) {
+                File file = files[i];
+                f = new WhatsAppModelClass();
+                f.setUri(Uri.fromFile(file));
+                f.setPath(files[i].getAbsolutePath());
+                f.setFileName(file.getName());
 
-            if (!f.getUri().toString().endsWith(".endmedia")) {
-                filesLists.add(f);
+                if (!f.getUri().toString().endsWith(".endmedia")) {
+                    filesLists.add(f);
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, "Please download whatsApp first", Toast.LENGTH_SHORT).show();
         }
         return filesLists;
     }

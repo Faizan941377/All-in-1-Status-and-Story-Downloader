@@ -10,8 +10,8 @@ android {
         applicationId "com.nextsuntech.allin1statusandstorydownloader"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 3
-        versionName "1.1"
+        versionCode 5
+        versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
